@@ -1,0 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("timing_results.csv")
+
+plt.figure(figsize=(10, 6))
+plt.plot(df["size"], df["selection_ms"], marker='o', label="Selection Sort")
+plt.plot(df["size"], df["heap_ms"],      marker='o', label="Heap Sort")
+plt.plot(df["size"], df["quick_ms"],     marker='o', label="Quick Sort")
+plt.plot(df["size"], df["stdsort_ms"],   marker='o', label="std::sort")
+
+plt.xlabel("Array size (n)")
+plt.ylabel("Time (ms)")
+plt.title("Sorting Time vs Array Size")
+plt.legend()
+plt.grid(True)
+plt.yscale("log")        # логарифмическая шкала — нагляднее
+plt.savefig("chart.png") # сохранить как картинку
+plt.show()
