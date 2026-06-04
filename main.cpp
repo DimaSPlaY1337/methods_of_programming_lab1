@@ -1,11 +1,8 @@
 /*
- * @file main.cpp
- * @brief Практическое задание по алгоритмам сортировок - Вариант 4
- * @details Структура данных: цветы (название, цвет, аромат, регионы).
- *          Реализованы: сортировка выбором, пирамидальная, быстрая, std::sort.
- *          Данные генерируются автоматически. Результаты пишутся в CSV.
- * @author  Student
- * @date    2026
+ * Практическое задание по алгоритмам сортировок - Вариант 4
+ * Структура данных: цветы (название, цвет, аромат, регионы).
+ * Реализованы: сортировка выбором, пирамидальная, быстрая, std::sort.
+ * Данные генерируются автоматически. Результаты пишутся в CSV.
  */
 
 #include <iostream>
@@ -18,10 +15,8 @@
 #include <iomanip>
 #include <random>
 
-//  СТРУКТУРА ДАННЫХ 
-
 /**
- * @brief Данные о цветке.
+ *  Данные о цветке.
  *
  * Поля сравнения (по приоритету): название -> цвет -> аромат.
  * Аромат ранжируется: "сильный" > "умеренный" > "слабый".
@@ -33,8 +28,8 @@ struct Flower {
     std::string regions;  ///< Регионы распространения
 
     /**
-     * @brief Числовой ранг аромата для сравнения.
-     * @return 2 - сильный, 1 - умеренный, 0 - слабый
+     *  Числовой ранг аромата для сравнения.
+     * return 2 - сильный, 1 - умеренный, 0 - слабый
      */
     int aromaRank() const {
         if (aroma == "сильный")   return 2;
@@ -42,7 +37,7 @@ struct Flower {
         return 0;
     }
 
-    /// @brief Лексикографическое сравнение: name -> color -> aromaRank
+    ///  Лексикографическое сравнение: name -> color -> aromaRank
     bool operator<(const Flower& o) const {
         if (name  != o.name)  return name  < o.name;
         if (color != o.color) return color < o.color;
@@ -57,9 +52,9 @@ struct Flower {
 //  ЗАПИСЬ В CSV 
 
 /**
- * @brief Записать массив цветков в CSV-файл.
- * @param filename Путь к файлу
- * @param flowers  Массив цветков
+ *  Записать массив цветков в CSV-файл.
+ *  filename Путь к файлу
+ *  flowers  Массив цветков
  */
 void writeToCSV(const std::string& filename, const std::vector<Flower>& flowers) {
     std::ofstream file(filename);
@@ -71,8 +66,8 @@ void writeToCSV(const std::string& filename, const std::vector<Flower>& flowers)
 //  АЛГОРИТМЫ СОРТИРОВКИ 
 
 /**
- * @brief Сортировка выбором (Selection Sort). O(n^2).
- * @param arr Массив, сортируется на месте
+ *  Сортировка выбором (Selection Sort). O(n^2).
+ *  arr Массив, сортируется на месте
  */
 void selectionSort(std::vector<Flower>& arr) {
     int n = static_cast<int>(arr.size());
@@ -85,10 +80,10 @@ void selectionSort(std::vector<Flower>& arr) {
 }
 
 /**
- * @brief Вспомогательное просеивание для пирамидальной сортировки.
- * @param arr Массив
- * @param n   Размер кучи
- * @param i   Корень поддерева
+ *  Вспомогательное просеивание для пирамидальной сортировки.
+ *  arr Массив
+ *  n   Размер кучи
+ *  i   Корень поддерева
  */
 void heapify(std::vector<Flower>& arr, int n, int i) {
     int largest = i;
@@ -102,8 +97,8 @@ void heapify(std::vector<Flower>& arr, int n, int i) {
 }
 
 /**
- * @brief Пирамидальная сортировка (Heap Sort). O(n log n).
- * @param arr Массив, сортируется на месте
+ *  Пирамидальная сортировка (Heap Sort). O(n log n).
+ *  arr Массив, сортируется на месте
  */
 void heapSort(std::vector<Flower>& arr) {
     int n = static_cast<int>(arr.size());//зачем приведение типов
@@ -115,11 +110,11 @@ void heapSort(std::vector<Flower>& arr) {
 }
 
 /**
- * @brief Разбиение Ломуто для быстрой сортировки.
- * @param arr  Массив
- * @param low  Левая граница
- * @param high Правая граница
- * @return Итоговый индекс опорного элемента
+ *  Разбиение Ломуто для быстрой сортировки.
+ *  arr  Массив
+ *  low  Левая граница
+ *  high Правая граница
+ * return Итоговый индекс опорного элемента
  */
 int partition(std::vector<Flower>& arr, int low, int high) {
     Flower pivot = arr[high];
@@ -131,10 +126,10 @@ int partition(std::vector<Flower>& arr, int low, int high) {
 }
 
 /**
- * @brief Быстрая сортировка (Quick Sort). O(n log n) среднее.
- * @param arr  Массив
- * @param low  Левая граница
- * @param high Правая граница
+ *  Быстрая сортировка (Quick Sort). O(n log n) среднее.
+ *  arr  Массив
+ *  low  Левая граница
+ *  high Правая граница
  */
 void quickSort(std::vector<Flower>& arr, int low, int high) {
     if (low < high) {
@@ -144,7 +139,7 @@ void quickSort(std::vector<Flower>& arr, int low, int high) {
     }
 }
 
-/// @brief Обёртка quickSort для интерфейса std::function
+///  Обёртка quickSort для интерфейса std::function
 void quickSortWrapper(std::vector<Flower>& arr) {
     if (!arr.empty()) quickSort(arr, 0, (int)arr.size() - 1);
 }
@@ -152,10 +147,10 @@ void quickSortWrapper(std::vector<Flower>& arr) {
 //  ГЕНЕРАЦИЯ ДАННЫХ 
 
 /**
- * @brief Генерировать случайный массив цветков заданного размера.
- * @param n   Количество элементов
- * @param seed Зерно генератора (для воспроизводимости)
- * @return std::vector<Flower>
+ *  Генерировать случайный массив цветков заданного размера.
+ *  n   Количество элементов
+ *  seed Зерно генератора (для воспроизводимости)
+ * return std::vector<Flower>
  */
 std::vector<Flower> generateData(int n, unsigned seed = 42) {
     static const std::vector<std::string> names   = {"Роза","Тюльпан","Лилия","Ромашка","Орхидея","Гвоздика","Пион","Нарцисс","Хризантема","Ирис","Незабудка","Лаванда","Мак","Васильки","Фиалка"};
@@ -181,10 +176,10 @@ std::vector<Flower> generateData(int n, unsigned seed = 42) {
 //  ЗАМЕР ВРЕМЕНИ 
 
 /**
- * @brief Замерить время выполнения алгоритма сортировки.
- * @param arr      Исходный массив (копируется внутри)
- * @param sortFunc Функция сортировки
- * @return Время выполнения в миллисекундах
+ *  Замерить время выполнения алгоритма сортировки.
+ *  arr      Исходный массив (копируется внутри)
+ *  sortFunc Функция сортировки
+ * return Время выполнения в миллисекундах
  */
 double measureTime(const std::vector<Flower>& arr,
                    std::function<void(std::vector<Flower>&)> sortFunc) {
