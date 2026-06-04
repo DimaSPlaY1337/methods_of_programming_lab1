@@ -1,0 +1,68 @@
+\doxysection{Flower Struct Reference}
+\hypertarget{structFlower}{}\label{structFlower}\index{Flower@{Flower}}
+
+
+Данные о цветке.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structFlower_aa048b208395da4e4359bd5a20c446bd5}{aroma\+Rank}} () const
+\begin{DoxyCompactList}\small\item\em Числовой ранг аромата для сравнения. \end{DoxyCompactList}\item 
+\Hypertarget{structFlower_ac125f71f11e11a48d94cd54bced24bdd}\label{structFlower_ac125f71f11e11a48d94cd54bced24bdd} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{structFlower}{Flower}} \&o) const
+\begin{DoxyCompactList}\small\item\em Лексикографическое сравнение\+: name -\/\texorpdfstring{$>$}{>} color -\/\texorpdfstring{$>$}{>} aroma\+Rank. \end{DoxyCompactList}\item 
+\Hypertarget{structFlower_ae6aee7ec4fa3252273ace1a247846884}\label{structFlower_ae6aee7ec4fa3252273ace1a247846884} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{structFlower}{Flower}} \&o) const
+\item 
+\Hypertarget{structFlower_a24993632beb27d7f7ab5821c02156887}\label{structFlower_a24993632beb27d7f7ab5821c02156887} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{structFlower}{Flower}} \&o) const
+\item 
+\Hypertarget{structFlower_adccddeb3193547c90665d1fd9dbfee54}\label{structFlower_adccddeb3193547c90665d1fd9dbfee54} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{structFlower}{Flower}} \&o) const
+\item 
+\Hypertarget{structFlower_a622eae9d36b30dfe385dd1680a76cf7f}\label{structFlower_a622eae9d36b30dfe385dd1680a76cf7f} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{structFlower}{Flower}} \&o) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structFlower_a0921677c41be7468953f81427d0346d9}\label{structFlower_a0921677c41be7468953f81427d0346d9} 
+std\+::string {\bfseries name}
+\begin{DoxyCompactList}\small\item\em Название цветка \end{DoxyCompactList}\item 
+\Hypertarget{structFlower_a32b6a7a2ad723995a15e69591a4d6611}\label{structFlower_a32b6a7a2ad723995a15e69591a4d6611} 
+std\+::string {\bfseries color}
+\begin{DoxyCompactList}\small\item\em Цвет цветка \end{DoxyCompactList}\item 
+\Hypertarget{structFlower_a016de49610224d45c8c0a4266a9dcbf1}\label{structFlower_a016de49610224d45c8c0a4266a9dcbf1} 
+std\+::string {\bfseries aroma}
+\begin{DoxyCompactList}\small\item\em Аромат\+: "{}сильный"{}, "{}умеренный"{}, "{}слабый"{}. \end{DoxyCompactList}\item 
+\Hypertarget{structFlower_add77abf685dc473b1e321a6ef527f889}\label{structFlower_add77abf685dc473b1e321a6ef527f889} 
+std\+::string {\bfseries regions}
+\begin{DoxyCompactList}\small\item\em Регионы распространения \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Данные о цветке. 
+
+Поля сравнения (по приоритету)\+: название -\/\texorpdfstring{$>$}{>} цвет -\/\texorpdfstring{$>$}{>} аромат. Аромат ранжируется\+: "{}сильный"{} \texorpdfstring{$>$}{>} "{}умеренный"{} \texorpdfstring{$>$}{>} "{}слабый"{}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structFlower_aa048b208395da4e4359bd5a20c446bd5}\label{structFlower_aa048b208395da4e4359bd5a20c446bd5} 
+\index{Flower@{Flower}!aromaRank@{aromaRank}}
+\index{aromaRank@{aromaRank}!Flower@{Flower}}
+\doxysubsubsection{\texorpdfstring{aromaRank()}{aromaRank()}}
+{\footnotesize\ttfamily int Flower\+::aroma\+Rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Числовой ранг аромата для сравнения. 
+
+\begin{DoxyReturn}{Returns}
+2 -\/ сильный, 1 -\/ умеренный, 0 -\/ слабый 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+main.\+cpp\end{DoxyCompactItemize}

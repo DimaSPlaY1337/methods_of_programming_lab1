@@ -1,6 +1,6 @@
-/**
+/*
  * @file main.cpp
- * @brief Практическое задание по алгоритмам сортировок — Вариант 4
+ * @brief Практическое задание по алгоритмам сортировок - Вариант 4
  * @details Структура данных: цветы (название, цвет, аромат, регионы).
  *          Реализованы: сортировка выбором, пирамидальная, быстрая, std::sort.
  *          Данные генерируются автоматически. Результаты пишутся в CSV.
@@ -23,7 +23,7 @@
 /**
  * @brief Данные о цветке.
  *
- * Поля сравнения (по приоритету): название → цвет → аромат.
+ * Поля сравнения (по приоритету): название -> цвет -> аромат.
  * Аромат ранжируется: "сильный" > "умеренный" > "слабый".
  */
 struct Flower {
@@ -34,7 +34,7 @@ struct Flower {
 
     /**
      * @brief Числовой ранг аромата для сравнения.
-     * @return 2 — сильный, 1 — умеренный, 0 — слабый
+     * @return 2 - сильный, 1 - умеренный, 0 - слабый
      */
     int aromaRank() const {
         if (aroma == "сильный")   return 2;
@@ -42,7 +42,7 @@ struct Flower {
         return 0;
     }
 
-    /// @brief Лексикографическое сравнение: name → color → aromaRank
+    /// @brief Лексикографическое сравнение: name -> color -> aromaRank
     bool operator<(const Flower& o) const {
         if (name  != o.name)  return name  < o.name;
         if (color != o.color) return color < o.color;
@@ -71,7 +71,7 @@ void writeToCSV(const std::string& filename, const std::vector<Flower>& flowers)
 //  АЛГОРИТМЫ СОРТИРОВКИ 
 
 /**
- * @brief Сортировка выбором (Selection Sort). O(n²).
+ * @brief Сортировка выбором (Selection Sort). O(n^2).
  * @param arr Массив, сортируется на месте
  */
 void selectionSort(std::vector<Flower>& arr) {
@@ -106,8 +106,8 @@ void heapify(std::vector<Flower>& arr, int n, int i) {
  * @param arr Массив, сортируется на месте
  */
 void heapSort(std::vector<Flower>& arr) {
-    int n = static_cast<int>(arr.size());
-    for (int i = n/2 - 1; i >= 0; --i) heapify(arr, n, i);
+    int n = static_cast<int>(arr.size());//зачем приведение типов
+    for (int i = n/2 - 1; i >= 0; --i) heapify(arr, n, i);//строим макс-кучу
     for (int i = n - 1; i > 0; --i) {
         std::swap(arr[0], arr[i]);
         heapify(arr, i, 0);
@@ -123,7 +123,7 @@ void heapSort(std::vector<Flower>& arr) {
  */
 int partition(std::vector<Flower>& arr, int low, int high) {
     Flower pivot = arr[high];
-    int i = low - 1;
+    int i = low - 1;//правая граница элементов меньше опорного
     for (int j = low; j < high; ++j)
         if (arr[j] <= pivot) std::swap(arr[++i], arr[j]);
     std::swap(arr[i+1], arr[high]);
@@ -192,7 +192,7 @@ double measureTime(const std::vector<Flower>& arr,
     auto t0 = std::chrono::high_resolution_clock::now();
     sortFunc(copy);
     auto t1 = std::chrono::high_resolution_clock::now();
-    return std::chrono::duration<double, std::milli>(t1 - t0).count();
+    return std::chrono::duration<double, std::milli>(t1 - t0).count();//переводим время в миллисекунды
 }
 
 //  MAIN 
@@ -244,7 +244,7 @@ int main() {
     std::cout << std::string(72, '-') << '\n';
 
     for (int n : sizes) {
-        // Каждый размер — новый случайный массив с уникальным seed
+        // Каждый размер - новый случайный массив с уникальным seed
         auto data = generateData(n, n);
 
         double tSel  = measureTime(data, selectionSort);
